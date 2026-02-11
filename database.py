@@ -1,35 +1,31 @@
-from typing import Optional
 import asyncpg
 import os
-import json
 import asyncio
 from dotenv import load_dotenv
 from datetime import date
+from typing import Optional
 
 load_dotenv()
 
-DB_USER = "aniversedubbing"
-DB_PASSWORD = "aniversedubbing"
-DB_NAME = "aniversedubbing"
-DB_HOST = "localhost"
-DB_PORT = "5432"
+DATABASE_URL = os.environ["DATABASE_URL"]  # Majburiy
 
 db_pool: Optional[asyncpg.pool.Pool] = None
 
 
-
+# === Databasega ulanish ===
 async def init_db(retries: int = 5, delay: int = 2):
     global db_pool
-    for i in range(retries):
+
+    for attempt in range(retries):
         try:
             db_pool = await asyncpg.create_pool(
-                user=DB_USER,
-                password=DB_PASSWORD,
-                database=DB_NAME,
-                host=DB_HOST,
-                port=DB_PORT,
-                statement_cache_size=0
+                dsn=DATABASE_URL,
+                ssl="require",              # Supabase uchun kerak
+                statement_cache_size=0,     # Transaction pooler uchun muhim
+                min_size=1,
+                max_size=15                 # Ko‘p so‘rov uchun optimal
             )
+
             async with db_pool.acquire() as conn:
                 # === Foydalanuvchilar ===
                 await conn.execute("""
