@@ -16,7 +16,8 @@ from aiogram.types import (
     InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardRemove, ChatJoinRequest
 )
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
-
+from dotenv import load_dotenv
+from keep_alive import keep_alive
 from database import (
     init_db, add_user, get_user_count, get_kino_by_code, get_all_codes,
     delete_kino_code, get_code_stat, increment_stat, get_all_user_ids,
@@ -37,6 +38,9 @@ dp = Dispatcher(storage=storage)
 START_ADMINS = [6486825926, 7711928526]
 ADMINS = set(START_ADMINS)
 BOT_ACTIVE = True
+
+load_dotenv()
+keep_alive()
 
 class AdminStates(StatesGroup):
     waiting_for_kino_data = State()
