@@ -1,3 +1,4 @@
+import os
 import re
 import time
 import asyncio
@@ -26,8 +27,8 @@ from database import (
 
 logging.basicConfig(level=logging.INFO)
 
-API_TOKEN = ""
-BOT_USERNAME = "AniVerseDubbingBot"
+API_TOKEN = os.getenv("API_TOKEN")
+BOT_USERNAME = os.getenv("BOT_USERNAME")
 
 bot = Bot(token=API_TOKEN)
 storage = MemoryStorage()
