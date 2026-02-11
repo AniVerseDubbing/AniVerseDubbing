@@ -1,13 +1,15 @@
 services:
-  - type: worker          # ⚠️ "web" emas, "worker"!
+  - type: worker          # ⚠️ "web" EMAS — "worker"!
     name: telegram-bot
     runtime: python
-    region: frankfurt
+    region: frankfurt     # Yoki o'zingizga yaqin region
     plan: free
     envVars:
-      - key: BOT_TOKEN
+      - key: API_TOKEN
         sync: false
       - key: DATABASE_URL
         sync: false
+      - key: BOT_USERNAME
+        sync: false
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "python main.py"  # polling bilan ishlaydi
+    startCommand: "python bot.py"
