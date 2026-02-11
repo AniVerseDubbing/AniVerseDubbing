@@ -1,0 +1,13 @@
+services:
+  - type: worker          # ⚠️ "web" emas, "worker"!
+    name: telegram-bot
+    runtime: python
+    region: frankfurt
+    plan: free
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python main.py"  # polling bilan ishlaydi
