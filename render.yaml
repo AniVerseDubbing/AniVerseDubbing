@@ -12,4 +12,4 @@ services:
       - key: BOT_USERNAME
         sync: false
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "python bot.py"
+    startCommand: "python main.py"
