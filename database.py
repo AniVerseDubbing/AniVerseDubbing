@@ -1,5 +1,4 @@
 import json
-import aiosqlite
 import asyncpg
 import os
 import asyncio
