@@ -35,7 +35,7 @@ bot = Bot(token=API_TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(storage=storage)
 
-START_ADMINS = [6486825926, 7711928526]
+START_ADMINS = [6486825926, 5492962467]
 ADMINS = set(START_ADMINS)
 BOT_ACTIVE = True
 
